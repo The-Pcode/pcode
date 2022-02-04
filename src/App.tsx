@@ -6,13 +6,13 @@ import TemplatePage from "./pages/templatePage";
 
 function App() {
   return (
-      <Layout>
-    <Routes>
+    <Layout>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/template" element={<TemplatePage />} />
         <Route path="/about" element={<AboutPage />} />
-    </Routes>
-      </Layout>
+      </Routes>
+    </Layout>
   );
 }
 
