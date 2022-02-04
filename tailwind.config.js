@@ -12,6 +12,15 @@ module.exports = {
         300: '#C2710A',
         400: '#3E2013',
       },
+      secondary: {
+        code: "#282C34",
+        title: "#768099"
+      },
+      controls: {
+        red: "#F5434A",
+        yellow: "#FAC41C",
+        green: "#31D599"
+      }
     }
   },
   plugins: [],
