@@ -1,6 +1,5 @@
 import exportIcon from "../svg/exporticon.svg";
 import downIcon from "../svg/downIcon.svg";
-import { Switch } from "@chakra-ui/switch";
 
 const HomePage = () => {
   const controls = [
