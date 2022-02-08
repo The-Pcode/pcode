@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body, #root{
   background-color: #FFF0D3;
+}
+
+.code-mirror-wrapper{
+  overflow: hidden;
+  font-size: 18px;
+  height: auto;
 }

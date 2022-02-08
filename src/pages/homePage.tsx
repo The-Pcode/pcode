@@ -1,6 +1,7 @@
 import exportIcon from "../svg/exporticon.svg";
 import downIcon from "../svg/downIcon.svg";
 import { Switch } from "@chakra-ui/switch";
+import Editor from "../components/Editor";
 
 const HomePage = () => {
   const controls = [
@@ -9,9 +10,9 @@ const HomePage = () => {
     { color: "bg-controls-green", id: 3 },
   ];
   return (
-    <div className="pt-24  w-full min-h-[50rem] flex flex-col justify-between">
-      <div className="mx-auto w-8/12 h-96 bg-gradient-to-tl from-primary-300 to-primary-200 p-7">
-        <div className="bg-secondary-code w-full h-full rounded-lg">
+    <div className="pt-24  w-full min-h-[50rem] h-auto flex flex-col justify-between">
+      <div className="mx-auto w-8/12 min-h-96 h-auto bg-gradient-to-tl from-primary-300 to-primary-200 p-7">
+        <div className="bg-secondary-code w-full h-full rounded-lg overflow-hidden">
           <div className="w-full h-8  rounded-t-md flex justify-between items-end pb-1 pl-3  pr-3">
             <div className="flex w-20">
               {controls.map((item) => (
@@ -22,13 +23,14 @@ const HomePage = () => {
               ))}
             </div>
             <span
-              contentEditable="true"
+              // contentEditable="true"
               className="outline-none block  text-secondary-title"
             >
               untitle-1
             </span>
             <div className="w-20"></div>
           </div>
+          <Editor />
         </div>
       </div>
       <div className="mx-auto w-8/12 h-16 border-2 border-primary-200 rounded-md flex justify-between items-center pl-3 pr-3">
@@ -39,10 +41,11 @@ const HomePage = () => {
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <h1 className="text-primary-400 mr-3 font-medium">dark mode</h1>
+            <Switch colorScheme="orange" />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <h1 className="text-primary-400 mr-3 font-medium">transparent</h1>
-            <span className="bg-primary-200 w-7 h-7 rounded-full "></span>
+            <Switch colorScheme="orange" />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <h1 className="text-primary-400 mr-3 font-medium">padding</h1>
