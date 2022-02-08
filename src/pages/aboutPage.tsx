@@ -28,6 +28,7 @@ const AboutPage = () => {
             Pcode lets you create and share beautiful images of your source code
           </p>
         </div>
+
         <div className="pt-10">
           <h1 className="font-medium text-3xl mb-3 text-primary-400">
             Join to improve
@@ -40,6 +41,7 @@ const AboutPage = () => {
             Welcome Contributors!
           </a>
         </div>
+
         <div className="pt-6 flex">
           {contributors.map((item) => (
             <a
@@ -56,6 +58,7 @@ const AboutPage = () => {
             </a>
           ))}
         </div>
+        
       </div>
     </div>
   );

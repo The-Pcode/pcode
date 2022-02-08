@@ -7,6 +7,7 @@ const HomePage = () => {
     { color: "bg-controls-yellow", id: 2 },
     { color: "bg-controls-green", id: 3 },
   ];
+  
   return (
     <div className="pt-24  w-full min-h-[50rem] flex flex-col justify-between">
       <div className="mx-auto w-8/12 h-96 bg-gradient-to-tl from-primary-300 to-primary-200 p-7">
@@ -30,6 +31,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
       <div className="mx-auto w-8/12 h-16 border-2 border-primary-200 rounded-md flex justify-between items-center pl-3 pr-3">
         <div className="flex items-center  ">
           <div className="flex items-center mr-6 cursor-pointer">
@@ -57,6 +59,7 @@ const HomePage = () => {
             alt="export icon"
           />
         </div>
+        
       </div>
     </div>
   );

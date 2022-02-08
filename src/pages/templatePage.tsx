@@ -2,6 +2,7 @@ import templateOne from "../svg/templateOne.svg";
 import templateTwo from "../svg/templateTwo.svg";
 import templateThree from "../svg/templateThree.svg";
 import templateFour from "../svg/templateFour.svg";
+import { Link } from "react-router-dom";
 
 const TemplatePage = () => {
   const templates = [
@@ -21,7 +22,9 @@ const TemplatePage = () => {
         </p>
         <div className="w-full flex flex-wrap justify-evenly mb-6">
           {templates.map((item) => (
-            <img key={item.id} src={item.src} alt="" className="mt-16" />
+            <Link to="/">
+              <img key={item.id} src={item.src} alt="" className="mt-16" />
+            </Link>
           ))}
         </div>
       </div>
