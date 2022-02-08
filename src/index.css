@@ -6,8 +6,7 @@ body, #root{
   background-color: #FFF0D3;
 }
 
-.code-mirror-wrapper{
+.codemirror{
   overflow: hidden;
   font-size: 18px;
-  height: auto;
 }
