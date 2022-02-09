@@ -6,7 +6,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="max-w-7xl min-h-screen mx-auto relative">
       <Navigation />
-        {children}
+      {children}
       <Footer />
     </div>
   );

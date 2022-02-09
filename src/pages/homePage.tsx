@@ -33,6 +33,7 @@ const HomePage = () => {
         setBg(`bg-gradient-to-br from-themes-blueFrom to-themes-blueTo`);
         break;
       default:
+        setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`);
         break;
     }
   }, [themes]);
