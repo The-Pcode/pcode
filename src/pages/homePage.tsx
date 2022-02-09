@@ -1,18 +1,26 @@
-
+import { Switch } from "@chakra-ui/switch";
+import { useState } from "react";
 import Editor from "../components/Editor";
-import EditorControlers from "../components/editorControlers";
+import downIcon from "../svg/downIcon.svg";
+import exportIcon from "../svg/exporticon.svg";
 
 const HomePage = () => {
+  const [isDark, setIsDark] = useState<any>(true);
+
   const controls = [
     { color: "bg-controls-red", id: 1 },
     { color: "bg-controls-yellow", id: 2 },
     { color: "bg-controls-green", id: 3 },
   ];
-  
+
   return (
     <div className="pt-24  w-full min-h-[50rem] h-auto flex flex-col justify-between">
       <div className="mx-auto w-8/12 min-h-96 h-auto bg-gradient-to-tl from-primary-300 to-primary-200 p-7">
-        <div className="bg-secondary-code w-full h-full rounded-lg overflow-hidden ">
+        <div
+          className={`${
+            isDark ? "bg-secondary-code" : "bg-secondary-light"
+          } w-full h-full rounded-lg overflow-hidden `}
+        >
           <div className="w-full h-8 mb-4 rounded-t-md flex justify-between items-end pb-1 pl-3  pr-3">
             <div className="flex w-20">
               {controls.map((item) => (
@@ -30,11 +38,43 @@ const HomePage = () => {
             </span>
             <div className="w-20"></div>
           </div>
-          <Editor />
+          <Editor isDark={isDark} />
         </div>
       </div>
 
-     <EditorControlers />
+      <div className="mx-auto w-8/12 h-16 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3">
+        <div className="flex items-center  ">
+          <div className="flex items-center mr-6 cursor-pointer">
+            <h1 className="text-primary-400 mr-3 font-medium">background</h1>
+            <span className="bg-primary-200 w-7 h-7 rounded-full "></span>
+          </div>
+          <div className="flex items-center mr-6 cursor-pointer">
+            <h1 className="text-primary-400 mr-3 font-medium">light mode</h1>
+            <Switch
+              colorScheme="orange"
+              onChange={() => setIsDark((prev: any) => !prev)}
+              value={isDark}
+            />
+          </div>
+          <div className="flex items-center mr-6 cursor-pointer">
+            <h1 className="text-primary-400 mr-3 font-medium">transparent</h1>
+            <Switch colorScheme="orange" />
+          </div>
+          <div className="flex items-center mr-6 cursor-pointer">
+            <h1 className="text-primary-400 mr-3 font-medium">padding</h1>
+            <img src={downIcon} alt="" className="select-none" />
+          </div>
+        </div>
+
+        <div className="flex items-center bg-primary-200 px-3 h-8 rounded-lg cursor-pointer">
+          <h1 className="font-medium select-none text-primary-400">Export</h1>{" "}
+          <img
+            className="w-3 select-none ml-2"
+            src={exportIcon}
+            alt="export icon"
+          />
+        </div>
+      </div>
     </div>
   );
 };

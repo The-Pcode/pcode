@@ -1,9 +1,7 @@
-
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 
-const Editor = () => {
-
+const Editor = ({ isDark }: { isDark: any }) => {
   const value = `import { ReactNode } from "react";
   import Footer from "../components/footer";
   import Navigation from "../components/navigation";
@@ -18,7 +16,7 @@ const Editor = () => {
     );
   };
   
-  export default Layout;`
+  export default Layout;`;
 
   return (
     <div className="h-auto px-2 pb-2">
@@ -26,8 +24,8 @@ const Editor = () => {
         value={value}
         height="auto"
         className="codemirror"
-        extensions={[javascript({ jsx: true })] }
-        theme='dark'
+        extensions={[javascript({ jsx: true })]}
+        theme={isDark ? "dark" : "light"}
         onChange={(value, viewUpdate) => {
           console.log("value:", value);
         }}

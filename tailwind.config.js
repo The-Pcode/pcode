@@ -14,7 +14,8 @@ module.exports = {
       },
       secondary: {
         code: "#282C34",
-        title: "#768099"
+        title: "#768099",
+        light: "#fff",
       },
       controls: {
         red: "#F5434A",
