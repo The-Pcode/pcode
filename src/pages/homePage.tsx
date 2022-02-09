@@ -2,7 +2,6 @@ import { Select } from "@chakra-ui/react";
 import { Switch } from "@chakra-ui/switch";
 import { useState } from "react";
 import Editor from "../components/Editor";
-import downIcon from "../svg/downIcon.svg";
 import exportIcon from "../svg/exporticon.svg";
 
 const HomePage = () => {
