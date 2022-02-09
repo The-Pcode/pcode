@@ -1,3 +1,4 @@
+import { Select } from "@chakra-ui/react";
 import { Switch } from "@chakra-ui/switch";
 import { useState } from "react";
 import Editor from "../components/Editor";
@@ -7,6 +8,7 @@ import exportIcon from "../svg/exporticon.svg";
 const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
   const [isTransparent, setIsTransparent] = useState<any>(false);
+  const [paddingOptions, setPaddingOptions] = useState("");
 
   const controls = [
     { color: "bg-controls-red", id: 1 },
@@ -14,10 +16,16 @@ const HomePage = () => {
     { color: "bg-controls-green", id: 3 },
   ];
 
+  const handleChange = (e: any) => {
+    setPaddingOptions(e.target.value);
+  };
+
   return (
-    <div className="pt-24  w-full min-h-[50rem] h-auto flex flex-col justify-between">
+    <div className="pt-24 w-full min-h-[50rem] h-auto flex flex-col justify-between">
       <div
-        className={`mx-auto w-8/12 min-h-96 h-auto  p-7 ${
+        className={`mx-auto min-w-8/12 w-auto min-h-96 h-auto ${
+          paddingOptions ? paddingOptions : "p-7"
+        } ${
           isTransparent
             ? "transparentBg"
             : "bg-gradient-to-tl from-primary-300 to-primary-200"
@@ -72,8 +80,18 @@ const HomePage = () => {
             />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
-            <h1 className="text-primary-400 mr-3 font-medium">padding</h1>
-            <img src={downIcon} alt="" className="select-none" />
+            <Select
+              variant="unstyled"
+              placeholder="padding"
+              fontWeight="medium"
+              color="#3E2013"
+              onChange={handleChange}
+            >
+              <option value="p-5">5</option>
+              <option value="p-10">10</option>
+              <option value="p-16">16</option>
+              <option value="p-20">20</option>
+            </Select>
           </div>
         </div>
 
