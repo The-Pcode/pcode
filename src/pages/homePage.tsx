@@ -6,6 +6,7 @@ import exportIcon from "../svg/exporticon.svg";
 
 const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
+  const [isTransparent, setIsTransparent] = useState<any>(false);
 
   const controls = [
     { color: "bg-controls-red", id: 1 },
@@ -15,7 +16,13 @@ const HomePage = () => {
 
   return (
     <div className="pt-24  w-full min-h-[50rem] h-auto flex flex-col justify-between">
-      <div className="mx-auto w-8/12 min-h-96 h-auto bg-gradient-to-tl from-primary-300 to-primary-200 p-7">
+      <div
+        className={`mx-auto w-8/12 min-h-96 h-auto  p-7 ${
+          isTransparent
+            ? "transparentBg"
+            : "bg-gradient-to-tl from-primary-300 to-primary-200"
+        }`}
+      >
         <div
           className={`${
             isDark ? "bg-secondary-code" : "bg-secondary-light"
@@ -58,7 +65,11 @@ const HomePage = () => {
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <h1 className="text-primary-400 mr-3 font-medium">transparent</h1>
-            <Switch colorScheme="orange" />
+            <Switch
+              colorScheme="orange"
+              value={isTransparent}
+              onChange={() => setIsTransparent((prev: any) => !prev)}
+            />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <h1 className="text-primary-400 mr-3 font-medium">padding</h1>
