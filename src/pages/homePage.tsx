@@ -1,6 +1,13 @@
-import { Select } from "@chakra-ui/react";
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Select,
+} from "@chakra-ui/react";
 import { Switch } from "@chakra-ui/switch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Editor from "../components/Editor";
 import exportIcon from "../svg/exporticon.svg";
 
@@ -8,6 +15,28 @@ const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
   const [isTransparent, setIsTransparent] = useState<any>(false);
   const [paddingOptions, setPaddingOptions] = useState("");
+  const [themes, setThemes] = useState("");
+  const [bg, setBg] = useState(``);
+
+  useEffect(() => {
+    switch (themes) {
+      case "beige":
+        setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`);
+        break;
+      case "purple":
+        setBg(`bg-gradient-to-br from-themes-purpleFrom to-themes-purpleTo`);
+        break;
+      case "green":
+        setBg(`bg-gradient-to-br from-themes-greenFrom to-themes-greenTo`);
+        break;
+      case "blue":
+        setBg(`bg-gradient-to-br from-themes-blueFrom to-themes-blueTo`);
+        break;
+      default:
+        setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`);
+        break;
+    }
+  }, [themes]);
 
   const controls = [
     { color: "bg-controls-red", id: 1 },
@@ -19,16 +48,16 @@ const HomePage = () => {
     setPaddingOptions(e.target.value);
   };
 
+  const handleTheme = (e: any) => {
+    setThemes(e.target.name);
+  };
+
   return (
     <div className="pt-24 w-full min-h-[50rem] h-auto flex flex-col justify-between">
       <div
         className={`mx-auto min-w-8/12 w-auto min-h-96 h-auto ${
           paddingOptions ? paddingOptions : "p-7"
-        } ${
-          isTransparent
-            ? "transparentBg"
-            : "bg-gradient-to-tl from-primary-300 to-primary-200"
-        }`}
+        } ${isTransparent ? "transparentBg" : bg}`}
       >
         <div
           className={`${
@@ -59,8 +88,33 @@ const HomePage = () => {
       <div className="mx-auto w-8/12 h-16 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3">
         <div className="flex items-center  ">
           <div className="flex items-center mr-6 cursor-pointer">
-            <h1 className="text-primary-400 mr-3 font-medium">background</h1>
-            <span className="bg-primary-200 w-7 h-7 rounded-full "></span>
+            <Menu>
+              <MenuButton
+                as={Button}
+                _focus={{}}
+                bg="none"
+                _hover={{}}
+                _active={{}}
+              >
+                <h1 className="text-primary-400 mr-3 font-medium">
+                  background
+                </h1>
+              </MenuButton>
+              <MenuList>
+                <MenuItem name="beige" onClick={handleTheme}>
+                  Beige
+                </MenuItem>
+                <MenuItem name="purple" onClick={handleTheme}>
+                  purple
+                </MenuItem>
+                <MenuItem name="green" onClick={handleTheme}>
+                  green
+                </MenuItem>
+                <MenuItem name="blue" onClick={handleTheme}>
+                  blue
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <h1 className="text-primary-400 mr-3 font-medium">light mode</h1>

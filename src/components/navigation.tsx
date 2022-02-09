@@ -2,7 +2,7 @@ import logo from "../svg/logo.svg";
 import { Link } from "react-router-dom";
 
 const Navigation = () => {
-  return (
+  return ( 
     <div className="pt-4 flex justify-between items-center">
       <Link to="/">
         <img className="w-20" src={logo} alt="" />
