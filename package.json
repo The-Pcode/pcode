@@ -19,7 +19,6 @@
     "codemirror": "^5.65.1",
     "framer-motion": "^5",
     "react": "^17.0.2",
-    "react-codemirror2": "^7.2.1",
     "react-dom": "^17.0.2",
     "react-router-dom": "6",
     "react-scripts": "5.0.0",

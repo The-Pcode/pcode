@@ -1,14 +1,6 @@
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/dracula.css";
-import "codemirror/theme/material.css";
-import "codemirror/theme/duotone-dark.css";
-import "codemirror/theme/yonce.css";
-import "codemirror/mode/javascript/javascript";
-import "codemirror/mode/jsx/jsx";
-import { Controlled as ControlledEditor } from "react-codemirror2";
+
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
-import { useState } from "react";
 
 const Editor = () => {
 
@@ -26,8 +18,7 @@ const Editor = () => {
     );
   };
   
-  export default Layout;
-  `
+  export default Layout;`
 
   return (
     <div className="h-auto px-2 pb-2">
