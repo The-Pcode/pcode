@@ -2,21 +2,16 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 
 const Editor = ({ isDark }: { isDark: any }) => {
-  const value = `import { ReactNode } from "react";
-  import Footer from "../components/footer";
-  import Navigation from "../components/navigation";
-  
-  const Layout = ({ children }: { children: ReactNode }) => {
-    return (
-      <div className="max-w-7xl min-h-screen mx-auto relative">
-        <Navigation />
-          {children}
-        <Footer />
-      </div>
-    );
-  };
-  
-  export default Layout;`;
+  const value = `import React from "react";
+
+const App = () => {
+  return (
+    <div>hello world</div>
+  )
+}
+
+export default App;  
+  `;
 
   return (
     <div className="h-auto px-2 pb-2">
