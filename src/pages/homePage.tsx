@@ -7,9 +7,10 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { Switch } from "@chakra-ui/switch";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import Editor from "../components/Editor";
 import exportIcon from "../svg/exporticon.svg";
+import domtoimage from "dom-to-image";
 
 const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
@@ -17,6 +18,8 @@ const HomePage = () => {
   const [paddingOptions, setPaddingOptions] = useState("");
   const [themes, setThemes] = useState("");
   const [bg, setBg] = useState(``);
+  const [src, setSrc] = useState("");
+  const boxRef = createRef<any>();
 
   useEffect(() => {
     switch (themes) {
@@ -52,20 +55,43 @@ const HomePage = () => {
     setThemes(e.target.name);
   };
 
+  const handleExport = (dom: any) => {
+    var scale = 2;
+    domtoimage
+      .toPng(dom, {
+        width: dom.clientWidth * scale,
+        height: dom.clientHeight * scale,
+        style: {
+          transform: "scale(" + scale + ")",
+          transformOrigin: "top left",
+        },
+      })
+      .then(function (dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        setSrc(img.src);
+      })
+      .catch(function (err) {
+        console.error("oops, something went wrong!", err);
+      });
+  };
+
   return (
-    <div className="pt-24 w-full min-h-[50rem] h-auto flex flex-col justify-between">
+    <div className="pt-24 w-full min-h-[50rem] h-auto flex flex-col items-center  justify-between">
       <div
-        className={`mx-auto min-w-8/12 w-auto min-h-96 h-auto ${
+        ref={isTransparent ? null : boxRef}
+        className={`w-auto max-w-7xl  min-h-96 h-auto ${
           paddingOptions ? paddingOptions : "p-7"
         } ${isTransparent ? "transparentBg" : bg}`}
       >
         <div
+          ref={isTransparent ? boxRef : null}
           className={`${
             isDark ? "bg-secondary-code" : "bg-secondary-light"
-          } w-full h-full rounded-lg overflow-hidden `}
+          } w-full h-full rounded-xl overflow-hidden  `}
         >
-          <div className="w-full h-8 mb-4 rounded-t-md flex justify-between items-end pb-1 pl-3  pr-3">
-            <div className="flex w-20">
+          <div className="w-full h-8 mb-4 rounded-t-md flex justify-between items-end  pl-4  pr-4 ">
+            <div className="flex w-auto ">
               {controls.map((item) => (
                 <span
                   key={item.id}
@@ -73,9 +99,14 @@ const HomePage = () => {
                 ></span>
               ))}
             </div>
-            <input type="text" placeholder="Untitled" className="input-title" />
+            <input
+              type="text"
+              placeholder="untitled-1"
+              className="input-title"
+            />
             <div className="w-20"></div>
           </div>
+
           <Editor isDark={isDark} />
         </div>
       </div>
@@ -143,7 +174,10 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="flex items-center bg-primary-200 px-3 h-8 rounded-lg cursor-pointer">
+        <div
+          className="flex items-center bg-primary-200 px-3 h-8 rounded-lg cursor-pointer"
+          onClick={() => handleExport(boxRef.current)}
+        >
           <h1 className="font-medium select-none text-primary-400">Export</h1>{" "}
           <img
             className="w-3 select-none ml-2"
@@ -151,6 +185,9 @@ const HomePage = () => {
             alt="export icon"
           />
         </div>
+        <a href={src} download="theme">
+          download
+        </a>
       </div>
     </div>
   );
