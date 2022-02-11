@@ -10,6 +10,9 @@ body,
 .codemirror {
   overflow: hidden;
   font-size: 18px;
+  min-width: 550px;
+  margin-right: 13px;
+  margin-left: 7px;
 }
 
 .transparentBg {
@@ -20,4 +23,21 @@ body,
     linear-gradient(-45deg, transparent 75%, #1d1d1d 0);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+}
+
+.input-title {
+  background: transparent;
+  text-align: center;
+  outline: none;
+  border: none;
+  width: auto;
+  color: #768099;
+}
+.input-title::placeholder {
+  color: #768099;
+}
+
+.ͼo .cm-gutters {
+  border: none;
+  display: none;
 }
