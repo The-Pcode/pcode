@@ -73,12 +73,7 @@ const HomePage = () => {
                 ></span>
               ))}
             </div>
-            <span
-              // contentEditable="true"
-              className="outline-none block  text-secondary-title"
-            >
-              untitle-1
-            </span>
+            <input type="text" placeholder="Untitled" className="input-title" />
             <div className="w-20"></div>
           </div>
           <Editor isDark={isDark} />
