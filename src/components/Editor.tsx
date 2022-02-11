@@ -10,8 +10,7 @@ const App = () => {
   )
 }
 
-export default App;  
-  `;
+export default App;  `;
 
   return (
     <div className="h-auto px-2 pb-2">

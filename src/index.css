@@ -32,6 +32,7 @@ body,
   border: none;
   width: auto;
   color: #768099;
+  font-size: 15px;
 }
 .input-title::placeholder {
   color: #768099;
@@ -40,4 +41,17 @@ body,
 .ͼo .cm-gutters {
   border: none;
   display: none;
+}
+
+.ͼ2 .cm-gutters {
+  border: none;
+  display: none;
+}
+
+.ͼo .cm-activeLine {
+  background-color: #2c313a00;
+}
+
+.ͼ2 .cm-activeLine {
+  background-color: #2c313a00;
 }
