@@ -24,12 +24,12 @@ module.exports = {
       themes: {
         beigeFrom: "#F6C76E",
         beigeTo: "#C2710A",
-        purpleFrom: "#8F00FF",
-        purpleTo: "#00A3FF",
-        greenFrom: "#00FFD1",
-        greenTo: "#9EFF00",
-        blueFrom: "#00A3FF",
-        blueTo: "#00E0FF",
+        purpleFrom: "#6367F8",
+        purpleTo: "#FF9491",
+        greenFrom: "#59E4B2",
+        greenTo: "#68B1C8",
+        blueFrom: "#0070F3",
+        blueTo: "#61DAFB",
       }
     }
   },

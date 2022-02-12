@@ -31,18 +31,19 @@ const AboutPage = () => {
 
         <div className="pt-10">
           <h1 className="font-medium text-3xl mb-3 text-primary-400">
-            Join to improve
+            Contributors
           </h1>
           <a
-            href="mailto:ali.turckaman81@gmail.com"
+            href="https://github.com/The-Pcode"
             className="w-8/12 text-lg underline"
             style={{ color: "#FF8A00" }}
+            target="blank"
           >
-            Welcome Contributors!
+            Source
           </a>
         </div>
 
-        <div className="pt-6 flex">
+        <div className="pt-5 flex">
           {contributors.map((item) => (
             <a
               href={item.github}
@@ -58,7 +59,6 @@ const AboutPage = () => {
             </a>
           ))}
         </div>
-        
       </div>
     </div>
   );

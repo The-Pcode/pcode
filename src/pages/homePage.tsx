@@ -7,13 +7,14 @@ import {
   MenuList,
   useDisclosure,
 } from "@chakra-ui/react";
+import domtoimage from "dom-to-image";
+import Editor from "../components/Editor";
+import ModalComp from "../components/modal";
 import { Switch } from "@chakra-ui/switch";
 import { createRef, useEffect, useState } from "react";
-import Editor from "../components/Editor";
 import { BiExport } from "react-icons/bi";
-import domtoimage from "dom-to-image";
 import { DiCss3, DiHtml5, DiJavascript, DiReact } from "react-icons/di";
-import ModalComp from "../components/modal";
+import { BiChevronDown } from "react-icons/bi";
 
 const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
@@ -24,7 +25,7 @@ const HomePage = () => {
   const [bg, setBg] = useState(``);
   const [src, setSrc] = useState("");
   const boxRef = createRef<any>();
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     switch (themes) {
@@ -32,7 +33,7 @@ const HomePage = () => {
         setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`);
         break;
       case "purple":
-        setBg(`bg-gradient-to-br from-themes-purpleFrom to-themes-purpleTo`);
+        setBg(`bg-gradient-to-tr from-themes-purpleFrom to-themes-purpleTo`);
         break;
       case "green":
         setBg(`bg-gradient-to-br from-themes-greenFrom to-themes-greenTo`);
@@ -75,17 +76,14 @@ const HomePage = () => {
           transformOrigin: "top left",
         },
       })
-      .then( (dataUrl) => {
+      .then((dataUrl) => {
         let img = new Image();
         img.src = dataUrl;
         setSrc(img.src);
-           
       })
       .catch(function (err) {
         console.error("oops, something went wrong!", err);
       });
-
-
   };
 
   return (
@@ -199,22 +197,34 @@ const HomePage = () => {
             </Menu>
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
-            <h1 className="text-primary-400 mr-3 font-medium">light mode</h1>
+            <label
+              htmlFor="lightmode"
+              className="text-primary-400 mr-3 font-medium cursor-pointer select-none"
+            >
+              light mode
+            </label>
             <Switch
               colorScheme="orange"
               onChange={() => setIsDark((prev: any) => !prev)}
+              id="lightmode"
               value={isDark}
             />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
-            <h1 className="text-primary-400 mr-3 font-medium">transparent</h1>
+            <label
+              htmlFor="transparent"
+              className="text-primary-400 mr-3 font-medium cursor-pointer select-none"
+            >
+              transparent
+            </label>
             <Switch
               colorScheme="orange"
               value={isTransparent}
+              id="transparent"
               onChange={() => setIsTransparent((prev: any) => !prev)}
             />
           </div>
-          <div className="flex items-center mr-4 cursor-pointer">
+          <div className="flex items-center  cursor-pointer ">
             <Menu>
               <MenuButton
                 as={Button}
@@ -223,7 +233,10 @@ const HomePage = () => {
                 _hover={{}}
                 _active={{}}
               >
-                <h1 className="text-primary-400  font-medium">padding</h1>
+                <Flex alignItems="center">
+                  <h1 className="text-primary-400 font-medium">padding</h1>
+                  <BiChevronDown className="text-primary-400 ml-1 mt-1 text-xl" />
+                </Flex>
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
                 <MenuItem
@@ -278,7 +291,12 @@ const HomePage = () => {
                 _hover={{}}
                 _active={{}}
               >
-                <h1 className="text-primary-400 mr-3 font-medium">language</h1>
+                <Flex alignItems="center">
+                  <h1 className="text-primary-400 mr-1 font-medium">
+                    language
+                  </h1>
+                  <BiChevronDown className="text-primary-400  mt-1 text-xl" />
+                </Flex>
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
                 <MenuItem
@@ -338,14 +356,13 @@ const HomePage = () => {
         <button
           className="bg-primary-200 px-4 py-1 hover:bg-primary-100 border-2 border-primary-200 transition-all active:bg-primary-200 font-medium text-primary-400 rounded-lg flex items-center"
           onClick={() => {
-            handleExport(boxRef.current)
-            onOpen()
+            handleExport(boxRef.current);
+            onOpen();
           }}
         >
           Export
           <BiExport style={{ marginLeft: "10px", color: "#3E2013" }} />
         </button>
-
       </div>
       <ModalComp isOpen={isOpen} src={src} onClose={onClose} />
     </div>
