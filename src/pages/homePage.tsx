@@ -16,6 +16,7 @@ const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
   const [isTransparent, setIsTransparent] = useState<any>(false);
   const [paddingOptions, setPaddingOptions] = useState("");
+  const [lang, setLang] = useState("");
   const [themes, setThemes] = useState("");
   const [bg, setBg] = useState(``);
   const [src, setSrc] = useState("");
@@ -51,6 +52,10 @@ const HomePage = () => {
     setPaddingOptions(e.target.value);
   };
 
+  const handleLang = (e: any) => {
+    setLang(e.target.value);
+  };
+
   const handleTheme = (e: any) => {
     setThemes(e.target.name);
   };
@@ -77,41 +82,42 @@ const HomePage = () => {
   };
 
   return (
-    <div className="pt-24 w-full min-h-[50rem] h-auto flex flex-col items-center  justify-between">
+    <div className="container">
       <div
         ref={isTransparent ? null : boxRef}
-        className={`w-auto max-w-7xl  min-h-96 h-auto ${
+        className={`w-auto max-w-7xl  min-h-96 h-auto mb-14 ${
           paddingOptions ? paddingOptions : "p-7"
         } ${isTransparent ? "transparentBg" : bg}`}
       >
-        <div
-          ref={isTransparent ? boxRef : null}
-          className={`${
-            isDark ? "bg-secondary-code" : "bg-secondary-light"
-          } w-full h-full rounded-xl overflow-hidden  `}
-        >
-          <div className="w-full h-8 mb-4 rounded-t-md flex justify-between items-end  pl-4  pr-4 ">
-            <div className="flex w-auto ">
-              {controls.map((item) => (
-                <span
-                  key={item.id}
-                  className={`w-4 h-4 rounded-full mr-3 block ${item.color}`}
-                ></span>
-              ))}
+        <div ref={isTransparent ? boxRef : null}>
+          <div
+            className={`${
+              isDark ? "bg-secondary-code" : "bg-secondary-light"
+            }  rounded-xl  overflow-hidden  `}
+          >
+            <div className="w-full h-8 mb-4 rounded-t-xl flex justify-between items-end  pl-4  pr-4 ">
+              <div className="flex w-auto ">
+                {controls.map((item) => (
+                  <span
+                    key={item.id}
+                    className={`w-4 h-4 rounded-full mr-3 block ${item.color}`}
+                  ></span>
+                ))}
+              </div>
+              <input
+                type="text"
+                placeholder="untitled-1"
+                className="input-title"
+              />
+              <div className="w-20"></div>
             </div>
-            <input
-              type="text"
-              placeholder="untitled-1"
-              className="input-title"
-            />
-            <div className="w-20"></div>
-          </div>
 
-          <Editor isDark={isDark} />
+            <Editor lang={lang} isDark={isDark} />
+          </div>
         </div>
       </div>
 
-      <div className="mx-auto w-8/12 h-16 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3">
+      <div className="mx-auto w-9/12 h-16 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3">
         <div className="flex items-center  ">
           <div className="flex items-center mr-6 cursor-pointer">
             <Menu>
@@ -172,6 +178,20 @@ const HomePage = () => {
               <option value="p-20">20</option>
             </Select>
           </div>
+          <div className="flex items-center mr-6 cursor-pointer">
+            <Select
+              variant="unstyled"
+              placeholder="lang"
+              fontWeight="medium"
+              color="#3E2013"
+              onChange={handleLang}
+            >
+              <option value="html">html</option>
+              <option value="css">css</option>
+              <option value="javascript">javascript</option>
+              <option value="jsx">jsx</option>
+            </Select>
+          </div>
         </div>
 
         <div
@@ -186,7 +206,7 @@ const HomePage = () => {
           />
         </div>
         <a href={src} download="theme">
-          download
+          down
         </a>
       </div>
     </div>

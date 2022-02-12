@@ -55,3 +55,15 @@ body,
 .ͼ2 .cm-activeLine {
   background-color: #2c313a00;
 }
+
+.container{
+  margin-top: 50px;
+  padding-top: 24px;
+  width: 100%;
+  min-height: 80vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
