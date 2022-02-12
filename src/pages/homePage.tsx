@@ -5,13 +5,15 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Switch } from "@chakra-ui/switch";
 import { createRef, useEffect, useState } from "react";
 import Editor from "../components/Editor";
-import exportIcon from "../svg/exporticon.svg";
+import { BiExport } from "react-icons/bi";
 import domtoimage from "dom-to-image";
 import { DiCss3, DiHtml5, DiJavascript, DiReact } from "react-icons/di";
+import ModalComp from "../components/modal";
 
 const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
@@ -22,6 +24,7 @@ const HomePage = () => {
   const [bg, setBg] = useState(``);
   const [src, setSrc] = useState("");
   const boxRef = createRef<any>();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     switch (themes) {
@@ -72,14 +75,17 @@ const HomePage = () => {
           transformOrigin: "top left",
         },
       })
-      .then(function (dataUrl) {
+      .then( (dataUrl) => {
         let img = new Image();
         img.src = dataUrl;
         setSrc(img.src);
+           
       })
       .catch(function (err) {
         console.error("oops, something went wrong!", err);
       });
+
+
   };
 
   return (
@@ -309,21 +315,19 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div
-          className="flex items-center bg-primary-200 px-3 h-8 rounded-lg cursor-pointer"
-          onClick={() => handleExport(boxRef.current)}
+        <button
+          className="bg-primary-200 px-4 py-1 hover:bg-primary-100 border-2 border-primary-200 transition-all active:bg-primary-200 font-medium text-primary-400 rounded-lg flex items-center"
+          onClick={() => {
+            handleExport(boxRef.current)
+            onOpen()
+          }}
         >
-          <h1 className="font-medium select-none text-primary-400">Export</h1>{" "}
-          <img
-            className="w-3 select-none ml-2"
-            src={exportIcon}
-            alt="export icon"
-          />
-        </div>
-        <a href={src} download="theme">
-          down
-        </a>
+          Export
+          <BiExport style={{ marginLeft: "10px", color: "#3E2013" }} />
+        </button>
+
       </div>
+      <ModalComp isOpen={isOpen} src={src} onClose={onClose} />
     </div>
   );
 };
