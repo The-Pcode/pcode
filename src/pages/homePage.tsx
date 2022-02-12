@@ -142,6 +142,11 @@ const HomePage = () => {
                   _focus={{}}
                   name="beige"
                   onClick={handleTheme}
+                  icon={
+                    <div
+                      className={`w-5 h-5 bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo rounded-full`}
+                    ></div>
+                  }
                 >
                   Beige
                 </MenuItem>
@@ -150,6 +155,11 @@ const HomePage = () => {
                   _focus={{}}
                   name="purple"
                   onClick={handleTheme}
+                  icon={
+                    <div
+                      className={`w-5 h-5 bg-gradient-to-br from-themes-purpleFrom to-themes-purpleTo rounded-full`}
+                    ></div>
+                  }
                 >
                   purple
                 </MenuItem>
@@ -158,6 +168,11 @@ const HomePage = () => {
                   _focus={{}}
                   name="green"
                   onClick={handleTheme}
+                  icon={
+                    <div
+                      className={`w-5 h-5 bg-gradient-to-br from-themes-greenFrom to-themes-greenTo rounded-full`}
+                    ></div>
+                  }
                 >
                   green
                 </MenuItem>
@@ -166,6 +181,11 @@ const HomePage = () => {
                   _focus={{}}
                   name="blue"
                   onClick={handleTheme}
+                  icon={
+                    <div
+                      className={`w-5 h-5 bg-gradient-to-br from-themes-blueFrom to-themes-blueTo rounded-full`}
+                    ></div>
+                  }
                 >
                   blue
                 </MenuItem>
