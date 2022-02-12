@@ -61,7 +61,7 @@ const HomePage = () => {
   };
 
   const handleExport = (dom: any) => {
-    var scale = 2;
+    let scale = 2;
     domtoimage
       .toPng(dom, {
         width: dom.clientWidth * scale,
@@ -72,7 +72,7 @@ const HomePage = () => {
         },
       })
       .then(function (dataUrl) {
-        var img = new Image();
+        let img = new Image();
         img.src = dataUrl;
         setSrc(img.src);
       })
