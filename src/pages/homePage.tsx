@@ -1,16 +1,17 @@
 import {
   Button,
+  Flex,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Select,
 } from "@chakra-ui/react";
 import { Switch } from "@chakra-ui/switch";
 import { createRef, useEffect, useState } from "react";
 import Editor from "../components/Editor";
 import exportIcon from "../svg/exporticon.svg";
 import domtoimage from "dom-to-image";
+import { DiCss3, DiHtml5, DiJavascript, DiReact } from "react-icons/di";
 
 const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
@@ -48,12 +49,12 @@ const HomePage = () => {
     { color: "bg-controls-green", id: 3 },
   ];
 
-  const handleChange = (e: any) => {
-    setPaddingOptions(e.target.value);
+  const handlePadding = (e: any) => {
+    setPaddingOptions(e.target.name);
   };
 
   const handleLang = (e: any) => {
-    setLang(e.target.value);
+    setLang(e.target.name);
   };
 
   const handleTheme = (e: any) => {
@@ -119,30 +120,53 @@ const HomePage = () => {
 
       <div className="mx-auto w-9/12 h-16 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3">
         <div className="flex items-center  ">
-          <div className="flex items-center mr-6 cursor-pointer">
+          <div className="flex items-center mr-3 cursor-pointer">
             <Menu>
               <MenuButton
                 as={Button}
-                _focus={{}}
                 bg="none"
+                _focus={{}}
                 _hover={{}}
                 _active={{}}
               >
-                <h1 className="text-primary-400 mr-3 font-medium">
-                  background
-                </h1>
+                <Flex flexDir="row-reverse">
+                  <div className={`w-5 h-5 ${bg} rounded-full`}></div>
+                  <h1 className="text-primary-400 mr-3 font-medium">
+                    background
+                  </h1>
+                </Flex>
               </MenuButton>
-              <MenuList>
-                <MenuItem name="beige" onClick={handleTheme}>
+              <MenuList bg="#fde8be" border="1px solid #F6C76E">
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="beige"
+                  onClick={handleTheme}
+                >
                   Beige
                 </MenuItem>
-                <MenuItem name="purple" onClick={handleTheme}>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="purple"
+                  onClick={handleTheme}
+                >
                   purple
                 </MenuItem>
-                <MenuItem name="green" onClick={handleTheme}>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="green"
+                  onClick={handleTheme}
+                >
                   green
                 </MenuItem>
-                <MenuItem name="blue" onClick={handleTheme}>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="blue"
+                  onClick={handleTheme}
+                >
                   blue
                 </MenuItem>
               </MenuList>
@@ -164,33 +188,124 @@ const HomePage = () => {
               onChange={() => setIsTransparent((prev: any) => !prev)}
             />
           </div>
-          <div className="flex items-center mr-6 cursor-pointer">
-            <Select
-              variant="unstyled"
-              placeholder="padding"
-              fontWeight="medium"
-              color="#3E2013"
-              onChange={handleChange}
-            >
-              <option value="p-5">5</option>
-              <option value="p-10">10</option>
-              <option value="p-16">16</option>
-              <option value="p-20">20</option>
-            </Select>
+          <div className="flex items-center mr-4 cursor-pointer">
+            <Menu>
+              <MenuButton
+                as={Button}
+                _focus={{}}
+                bg="none"
+                _hover={{}}
+                _active={{}}
+              >
+                <h1 className="text-primary-400  font-medium">padding</h1>
+              </MenuButton>
+              <MenuList bg="#fde8be" border="1px solid #F6C76E">
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="p-5"
+                  onClick={handlePadding}
+                >
+                  5
+                </MenuItem>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="p-7"
+                  onClick={handlePadding}
+                >
+                  7
+                </MenuItem>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="p-10"
+                  onClick={handlePadding}
+                >
+                  10
+                </MenuItem>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="p-16"
+                  onClick={handlePadding}
+                >
+                  16
+                </MenuItem>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="p-20"
+                  onClick={handlePadding}
+                >
+                  20
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
-            <Select
-              variant="unstyled"
-              placeholder="lang"
-              fontWeight="medium"
-              color="#3E2013"
-              onChange={handleLang}
-            >
-              <option value="html">html</option>
-              <option value="css">css</option>
-              <option value="javascript">javascript</option>
-              <option value="jsx">jsx</option>
-            </Select>
+            <Menu>
+              <MenuButton
+                as={Button}
+                _focus={{}}
+                bg="none"
+                _hover={{}}
+                _active={{}}
+              >
+                <h1 className="text-primary-400 mr-3 font-medium">language</h1>
+              </MenuButton>
+              <MenuList bg="#fde8be" border="1px solid #F6C76E">
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="html"
+                  onClick={handleLang}
+                  color="#3E2013"
+                  icon={
+                    <DiHtml5 style={{ fontSize: "25px" }} color="#3E2013" />
+                  }
+                >
+                  HTML
+                </MenuItem>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="css"
+                  onClick={handleLang}
+                  color="#3E2013"
+                  icon={<DiCss3 style={{ fontSize: "25px" }} color="#3E2013" />}
+                >
+                  CSS
+                </MenuItem>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="javascript"
+                  onClick={handleLang}
+                  color="#3E2013"
+                  icon={
+                    <DiJavascript
+                      style={{ fontSize: "25px" }}
+                      color="#3E2013"
+                    />
+                  }
+                >
+                  JAVASCRIPT
+                </MenuItem>
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="jsx"
+                  onClick={handleLang}
+                  color="#3E2013"
+                  icon={
+                    <DiReact style={{ fontSize: "25px" }} color="#3E2013" />
+                  }
+                >
+                  JSX
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </div>
         </div>
 
