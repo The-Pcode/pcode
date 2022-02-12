@@ -3,6 +3,7 @@ import { javascript } from "@codemirror/lang-javascript";
 
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
+import { python } from "@codemirror/lang-python";
 
 const value = `import React from "react";
 
@@ -15,7 +16,6 @@ const App = () => {
 export default App;`;
 
 const Editor = ({ isDark, lang }: { isDark: any; lang: any }) => {
-
   return (
     <div className="h-auto px-2 pb-2">
       <CodeMirror
@@ -29,6 +29,8 @@ const Editor = ({ isDark, lang }: { isDark: any; lang: any }) => {
             ? css()
             : lang === "html"
             ? html()
+            :lang === "python" 
+            ? python() 
             : javascript({ jsx: true }),
         ]}
         theme={isDark ? "dark" : "light"}

@@ -15,6 +15,7 @@ import { createRef, useEffect, useState } from "react";
 import { BiExport } from "react-icons/bi";
 import { DiCss3, DiHtml5, DiJavascript, DiReact } from "react-icons/di";
 import { BiChevronDown } from "react-icons/bi";
+import {IoLogoPython} from "react-icons/io"
 
 const HomePage = () => {
   const [isDark, setIsDark] = useState<any>(true);
@@ -299,6 +300,18 @@ const HomePage = () => {
                 </Flex>
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
+                <MenuItem
+                  _hover={{ bg: "#F6C76E" }}
+                  _focus={{}}
+                  name="python"
+                  onClick={handleLang}
+                  color="#3E2013"
+                  icon={
+                    <IoLogoPython style={{ fontSize: "25px" }} color="#3E2013" />
+                  }
+                >
+                  PYTHON
+                </MenuItem>
                 <MenuItem
                   _hover={{ bg: "#F6C76E" }}
                   _focus={{}}
