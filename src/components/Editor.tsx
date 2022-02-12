@@ -3,7 +3,6 @@ import { javascript } from "@codemirror/lang-javascript";
 
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
-import { useEffect, useState } from "react";
 
 const value = `import React from "react";
 
@@ -16,7 +15,6 @@ const App = () => {
 export default App;`;
 
 const Editor = ({ isDark, lang }: { isDark: any; lang: any }) => {
-  const [isLang, setIsLang] = useState<any>("javascript");
 
   return (
     <div className="h-auto px-2 pb-2">

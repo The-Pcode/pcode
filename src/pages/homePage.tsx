@@ -48,12 +48,12 @@ const HomePage = () => {
     { color: "bg-controls-green", id: 3 },
   ];
 
-  const handleChange = (e: any) => {
-    setPaddingOptions(e.target.value);
+  const handlePadding = (e: any) => {
+    setPaddingOptions(e.target.name);
   };
 
   const handleLang = (e: any) => {
-    setLang(e.target.value);
+    setLang(e.target.name);
   };
 
   const handleTheme = (e: any) => {
@@ -132,7 +132,7 @@ const HomePage = () => {
                   background
                 </h1>
               </MenuButton>
-              <MenuList>
+              <MenuList bg='#fde8be' border="1px solid #F6C76E">
                 <MenuItem name="beige" onClick={handleTheme}>
                   Beige
                 </MenuItem>
@@ -164,33 +164,62 @@ const HomePage = () => {
               onChange={() => setIsTransparent((prev: any) => !prev)}
             />
           </div>
-          <div className="flex items-center mr-6 cursor-pointer">
-            <Select
-              variant="unstyled"
-              placeholder="padding"
-              fontWeight="medium"
-              color="#3E2013"
-              onChange={handleChange}
-            >
-              <option value="p-5">5</option>
-              <option value="p-10">10</option>
-              <option value="p-16">16</option>
-              <option value="p-20">20</option>
-            </Select>
+          <div className="flex items-center mr-4 cursor-pointer">
+            <Menu>
+              <MenuButton
+                as={Button}
+                _focus={{}}
+                bg="none"
+                _hover={{}}
+                _active={{}}
+              >
+                <h1 className="text-primary-400  font-medium">padding</h1>
+              </MenuButton>
+              <MenuList>
+                <MenuItem name="p-5" onClick={handlePadding}>
+                  5
+                </MenuItem>
+                <MenuItem name="p-7" onClick={handlePadding}>
+                  7
+                </MenuItem>
+                <MenuItem name="p-10" onClick={handlePadding}>
+                  10
+                </MenuItem>
+                <MenuItem name="p-16" onClick={handlePadding}>
+                  16
+                </MenuItem>
+                <MenuItem name="p-20" onClick={handlePadding}>
+                  20
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
-            <Select
-              variant="unstyled"
-              placeholder="lang"
-              fontWeight="medium"
-              color="#3E2013"
-              onChange={handleLang}
-            >
-              <option value="html">html</option>
-              <option value="css">css</option>
-              <option value="javascript">javascript</option>
-              <option value="jsx">jsx</option>
-            </Select>
+            <Menu>
+              <MenuButton
+                as={Button}
+                _focus={{}}
+                bg="none"
+                _hover={{}}
+                _active={{}}
+              >
+                <h1 className="text-primary-400 mr-3 font-medium">language</h1>
+              </MenuButton>
+              <MenuList>
+                <MenuItem name="html" onClick={handleLang}>
+                  HTML
+                </MenuItem>
+                <MenuItem name="css" onClick={handleLang}>
+                  CSS
+                </MenuItem>
+                <MenuItem name="javascript" onClick={handleLang}>
+                  JAVASCRIPT
+                </MenuItem>
+                <MenuItem name="jsx" onClick={handleLang}>
+                  JSX
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </div>
         </div>
 
