@@ -300,17 +300,17 @@ const HomePage = () => {
                 </Flex>
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
-                <MenuItem
+              <MenuItem
                   _hover={{ bg: "#F6C76E" }}
                   _focus={{}}
-                  name="python"
+                  name="jsx"
                   onClick={handleLang}
                   color="#3E2013"
                   icon={
-                    <IoLogoPython style={{ fontSize: "25px" }} color="#3E2013" />
+                    <DiReact style={{ fontSize: "25px" }} color="#3E2013" />
                   }
                 >
-                  PYTHON
+                  JSX
                 </MenuItem>
                 <MenuItem
                   _hover={{ bg: "#F6C76E" }}
@@ -349,17 +349,18 @@ const HomePage = () => {
                 >
                   JAVASCRIPT
                 </MenuItem>
+              
                 <MenuItem
                   _hover={{ bg: "#F6C76E" }}
                   _focus={{}}
-                  name="jsx"
+                  name="python"
                   onClick={handleLang}
                   color="#3E2013"
                   icon={
-                    <DiReact style={{ fontSize: "25px" }} color="#3E2013" />
+                    <IoLogoPython style={{ fontSize: "25px" }} color="#3E2013" />
                   }
                 >
-                  JSX
+                  PYTHON
                 </MenuItem>
               </MenuList>
             </Menu>
