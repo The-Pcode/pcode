@@ -34,7 +34,7 @@ const AboutPage = () => {
             Contributors
           </h1>
           <a
-            href="https://github.com/The-Pcode"
+            href="https://github.com/The-Pcode/pcode"
             className="w-8/12 text-lg underline"
             style={{ color: "#FF8A00" }}
             target="blank"
