@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Footer from "../components/footer";
 import Navigation from "../components/navigation";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: { children: ReactNode }) : JSX.Element => {
   return (
     <div className="max-w-7xl min-h-screen mx-auto relative">
       <Navigation />

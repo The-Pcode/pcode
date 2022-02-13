@@ -9,7 +9,16 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 
-const ModalComp = ({ onClose, isOpen, src }: any) => {
+const ModalComp = ({
+  onClose,
+  isOpen,
+  src,
+}: {
+  onClose: () => void;
+  isOpen: boolean;
+  src: string;
+}) => {
+
   return (
     <Modal
       isCentered

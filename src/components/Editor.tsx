@@ -7,8 +7,8 @@ import { python } from "@codemirror/lang-python";
 import { useEffect, useState } from "react";
 
 
-const Editor = ({ isDark, lang }: { isDark: any; lang: any }) => {
-  const [value, setValue] = useState(``);
+const Editor = ({ isDark, lang }: { isDark: boolean; lang: string }) => {
+  const [value, setValue] = useState<string>(``);
 
   useEffect(() => {
     switch (lang) {

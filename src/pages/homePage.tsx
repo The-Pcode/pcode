@@ -7,25 +7,28 @@ import {
   MenuList,
   useDisclosure,
 } from "@chakra-ui/react";
-import domtoimage from "dom-to-image";
+import domtoimage, { Options } from "dom-to-image";
 import Editor from "../components/Editor";
 import ModalComp from "../components/modal";
 import { Switch } from "@chakra-ui/switch";
-import { createRef, useEffect, useState } from "react";
+import {  createRef, MouseEvent, useEffect, useState } from "react";
 import { BiExport } from "react-icons/bi";
 import { DiCss3, DiHtml5, DiJavascript, DiReact } from "react-icons/di";
 import { BiChevronDown } from "react-icons/bi";
-import {IoLogoPython} from "react-icons/io"
+import { IoLogoPython } from "react-icons/io";
 
-const HomePage = () => {
+
+
+
+const HomePage = (): JSX.Element => {
+  const [paddingOptions, setPaddingOptions] = useState<string>("");
+  const [lang, setLang] = useState<string>("");
+  const [themes, setThemes] = useState<string>("");
   const [isDark, setIsDark] = useState<any>(true);
   const [isTransparent, setIsTransparent] = useState<any>(false);
-  const [paddingOptions, setPaddingOptions] = useState("");
-  const [lang, setLang] = useState("");
-  const [themes, setThemes] = useState("");
-  const [bg, setBg] = useState(``);
-  const [src, setSrc] = useState("");
-  const boxRef = createRef<any>();
+  const [bg, setBg] = useState<string>(``);
+  const [src, setSrc] = useState<string>("");
+  const boxRef = createRef<HTMLDivElement>();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
@@ -54,24 +57,28 @@ const HomePage = () => {
     { color: "bg-controls-green", id: 3 },
   ];
 
-  const handlePadding = (e: any) => {
-    setPaddingOptions(e.target.name);
+  const handlePadding = (e: MouseEvent<HTMLElement>) => {
+    const { name } = e.target as HTMLButtonElement;
+    setPaddingOptions(name);
   };
 
-  const handleLang = (e: any) => {
-    setLang(e.target.name);
+  const handleLang  = (e : MouseEvent<HTMLElement> ) => {
+    const { name } = e.target as HTMLButtonElement;
+    setLang(name);
   };
 
-  const handleTheme = (e: any) => {
-    setThemes(e.target.name);
+  const handleTheme = (e: MouseEvent<HTMLElement>) => {
+    const { name } = e.target as HTMLButtonElement;
+    setThemes(name);
   };
 
-  const handleExport = (dom: any) => {
+  const handleExport = (node : HTMLElement | any ) => {
+    console.log(node);
     let scale = 2;
     domtoimage
-      .toPng(dom, {
-        width: dom.clientWidth * scale,
-        height: dom.clientHeight * scale,
+      .toPng(node, {
+        width: node.clientWidth * scale,
+        height: node.clientHeight * scale,
         style: {
           transform: "scale(" + scale + ")",
           transformOrigin: "top left",
@@ -300,7 +307,7 @@ const HomePage = () => {
                 </Flex>
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
-              <MenuItem
+                <MenuItem
                   _hover={{ bg: "#F6C76E" }}
                   _focus={{}}
                   name="jsx"
@@ -349,7 +356,7 @@ const HomePage = () => {
                 >
                   JAVASCRIPT
                 </MenuItem>
-              
+
                 <MenuItem
                   _hover={{ bg: "#F6C76E" }}
                   _focus={{}}
@@ -357,7 +364,10 @@ const HomePage = () => {
                   onClick={handleLang}
                   color="#3E2013"
                   icon={
-                    <IoLogoPython style={{ fontSize: "25px" }} color="#3E2013" />
+                    <IoLogoPython
+                      style={{ fontSize: "25px" }}
+                      color="#3E2013"
+                    />
                   }
                 >
                   PYTHON
