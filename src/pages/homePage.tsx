@@ -87,10 +87,10 @@ const HomePage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container ">
       <div
         ref={isTransparent ? null : boxRef}
-        className={`w-auto max-w-7xl  min-h-96 h-auto mb-14 ${
+        className={` max-w-7xl  min-h-96 h-auto mb-14  w-screen  sm:w-auto ${
           paddingOptions ? paddingOptions : "p-7"
         } ${isTransparent ? "transparentBg" : bg}`}
       >
@@ -122,8 +122,8 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="mx-auto w-9/12 h-16 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3">
-        <div className="flex items-center  ">
+      <div className="mx-auto min-w-9/12 w-screen sm:w-auto flex-wrap h-auto py-3 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3 ">
+        <div className="flex items-center flex-wrap  ">
           <div className="flex items-center mr-3 cursor-pointer">
             <Menu>
               <MenuButton

@@ -59,7 +59,8 @@ body,
 .container{
   margin-top: 50px;
   padding-top: 24px;
-  width: 100%;
+  min-width: 100%;
+  width: auto;
   min-height: 80vh;
   height: auto;
   display: flex;

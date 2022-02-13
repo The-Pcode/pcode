@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return ( 
-    <div className="pt-4 flex justify-between items-center">
+    <div className="pt-4 px-4 flex w-full justify-between items-center">
       <Link to="/">
         <img className="w-20" src={logo} alt="" />
       </Link>
