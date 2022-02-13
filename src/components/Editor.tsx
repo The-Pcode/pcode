@@ -60,15 +60,44 @@ const Editor = ({ isDark, lang }: { isDark: boolean; lang: string }) => {
 export default Editor;
 
 
-export const _js = `console.log("javascript");`
+export const _js = `const button = doucument.getElementById("btn")
 
-export const _css = `#text {
-    font-size: 40px
+button.addEventListerner('click' () => {
+  console.log("Pcode");
 }`
 
-export const _html = `<h1>hello world</h1>`
+export const _css = `.btn {
+  color: white;
+  background: red;
+  border: 1px solid white;
+  border-radius: 5px;
+}
 
-export const _python = `print("hello world")`
+.text {
+  color: #131313;
+}`
+
+export const _html = `<html lang="en">
+  <head>
+    <title>Pcode</title>
+  </head>
+  <body>
+    <div class="container">
+      <p class="text">Lorem ipsum dolor sit amet</p>
+      <button class="btn">Pcode</button>
+    </div>
+  </body>
+</html>`
+
+export const _python = `# Store input numbers
+num1 = input('Enter first number: ')
+num2 = input('Enter second number: ')
+
+# Add two numbers
+sum = float(num1) + float(num2)
+
+# Display the sum
+print('The sum of {0} and {1} is {2}'.format(num1, num2, sum))`
 
 export const _jsx = `import React from "react";
 

@@ -11,14 +11,11 @@ import domtoimage, { Options } from "dom-to-image";
 import Editor from "../components/Editor";
 import ModalComp from "../components/modal";
 import { Switch } from "@chakra-ui/switch";
-import {  createRef, MouseEvent, useEffect, useState } from "react";
+import { createRef, MouseEvent, useEffect, useState } from "react";
 import { BiExport } from "react-icons/bi";
 import { DiCss3, DiHtml5, DiJavascript, DiReact } from "react-icons/di";
 import { BiChevronDown } from "react-icons/bi";
 import { IoLogoPython } from "react-icons/io";
-
-
-
 
 const HomePage = (): JSX.Element => {
   const [paddingOptions, setPaddingOptions] = useState<string>("");
@@ -62,7 +59,7 @@ const HomePage = (): JSX.Element => {
     setPaddingOptions(name);
   };
 
-  const handleLang  = (e : MouseEvent<HTMLElement> ) => {
+  const handleLang = (e: MouseEvent<HTMLElement>) => {
     const { name } = e.target as HTMLButtonElement;
     setLang(name);
   };
@@ -72,7 +69,7 @@ const HomePage = (): JSX.Element => {
     setThemes(name);
   };
 
-  const handleExport = (node : HTMLElement | any ) => {
+  const handleExport = (node: HTMLElement | any) => {
     console.log(node);
     let scale = 2;
     domtoimage

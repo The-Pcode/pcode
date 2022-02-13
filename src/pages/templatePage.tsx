@@ -22,8 +22,8 @@ const TemplatePage = () => {
         </p>
         <div className="w-full flex flex-wrap justify-evenly mb-6">
           {templates.map((item) => (
-            <Link to="/">
-              <img key={item.id} src={item.src} alt="" className="mt-16" /> 
+            <Link to="/" key={item.id}>
+              <img src={item.src} alt="" className="mt-16" />
             </Link>
           ))}
         </div>

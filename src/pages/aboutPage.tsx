@@ -17,25 +17,25 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="pt-10">
-      <div className="w-5/12 mx-auto">
-        <img src={logo} alt="" className="w-52 mx-auto" />
-        <div className="pt-10">
+    <div className="mt-10">
+      <div className="w-10/12 mx-auto">
+        <img src={logo} alt="" className="w-56 mx-auto" />
+        <div className="mt-10">
           <h1 className="font-medium text-3xl text-primary-400">
             What does it work?
           </h1>
-          <p className="w-8/12 mt-3 text-lg">
+          <p className="mt-2 text-lg">
             Pcode lets you create and share beautiful images of your source code
           </p>
         </div>
 
         <div className="pt-10">
-          <h1 className="font-medium text-3xl mb-3 text-primary-400">
+          <h1 className="font-medium text-3xl  text-primary-400">
             Contributors
           </h1>
           <a
             href="https://github.com/The-Pcode/pcode"
-            className="w-8/12 text-lg underline"
+            className="text-lg underline"
             style={{ color: "#FF8A00" }}
             target="blank"
           >
@@ -48,13 +48,13 @@ const AboutPage = () => {
             <a
               href={item.github}
               key={item.id}
-              className="w-1/12 mr-3"
+              className="w-12 -mr-2"
               target="blank"
             >
               <img
                 src={item.src}
                 alt={item.name}
-                className="rounded-full border-2 border-primary-400"
+                className="rounded-full border-solid border-2 border-primary-100"
               />
             </a>
           ))}
