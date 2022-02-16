@@ -33,7 +33,7 @@ const ModalComp = ({
 
         <ModalFooter>
           <a
-            className="bg-primary-200 font-medium  text-primary-400 w-full py-2 text-center rounded-lg"
+            className="bg-primary-200 font-medium  text-primary-400 w-full py-2 text-center rounded-lg hover:bg-primary-400 hover:text-primary-200 capitalize transition duration-300 ease-in-out"
             href={src}
             download="Pcode"
           >

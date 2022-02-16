@@ -95,7 +95,7 @@ const HomePage = (): JSX.Element => {
     <div className="container ">
       <div
         ref={isTransparent ? null : boxRef}
-        className={` max-w-7xl  min-h-96 h-auto mb-14  w-screen  sm:w-auto ${
+        className={` max-w-7xl  min-h-96 h-auto mb-14  w-screen  sm:w-auto rounded-xl ${
           paddingOptions ? paddingOptions : "p-7"
         } ${isTransparent ? "transparentBg" : bg}`}
       >
@@ -127,7 +127,7 @@ const HomePage = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="mx-auto min-w-9/12 w-screen sm:w-auto flex-wrap h-auto py-3 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3 ">
+      <div className="mx-auto min-w-9/12 w-screen sm:w-auto flex-wrap h-auto py-3 border-2 border-primary-200  rounded-xl flex justify-between items-center pl-3 pr-3 capitalize ">
         <div className="flex items-center flex-wrap  ">
           <div className="flex items-center mr-3 cursor-pointer">
             <Menu>
