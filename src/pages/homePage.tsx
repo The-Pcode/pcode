@@ -79,6 +79,7 @@ const HomePage = (): JSX.Element => {
         style: {
           transform: "scale(" + scale + ")",
           transformOrigin: "top left",
+          borderRadius: "0px"
         },
       })
       .then((dataUrl) => {
