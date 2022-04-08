@@ -7,7 +7,7 @@ import {
   MenuList,
   useDisclosure,
 } from '@chakra-ui/react'
-import domtoimage, { Options } from 'dom-to-image'
+import domtoimage from 'dom-to-image'
 import Editor from '../components/Editor'
 import ModalComp from '../components/modal'
 import { Switch } from '@chakra-ui/switch'
