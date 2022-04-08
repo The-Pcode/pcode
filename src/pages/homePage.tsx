@@ -6,108 +6,108 @@ import {
   MenuItem,
   MenuList,
   useDisclosure,
-} from "@chakra-ui/react";
-import domtoimage, { Options } from "dom-to-image";
-import Editor from "../components/Editor";
-import ModalComp from "../components/modal";
-import { Switch } from "@chakra-ui/switch";
-import { createRef, MouseEvent, useEffect, useState } from "react";
-import { BiExport } from "react-icons/bi";
-import { DiCss3, DiHtml5, DiJavascript, DiReact } from "react-icons/di";
-import { BiChevronDown } from "react-icons/bi";
-import { IoLogoPython } from "react-icons/io";
+} from '@chakra-ui/react'
+import domtoimage, { Options } from 'dom-to-image'
+import Editor from '../components/Editor'
+import ModalComp from '../components/modal'
+import { Switch } from '@chakra-ui/switch'
+import { createRef, MouseEvent, useEffect, useState } from 'react'
+import { BiExport } from 'react-icons/bi'
+import { DiCss3, DiHtml5, DiJavascript, DiReact } from 'react-icons/di'
+import { BiChevronDown } from 'react-icons/bi'
+import { IoLogoPython } from 'react-icons/io'
 
 const HomePage = (): JSX.Element => {
-  const [paddingOptions, setPaddingOptions] = useState<string>("");
-  const [lang, setLang] = useState<string>("");
-  const [themes, setThemes] = useState<string>("");
-  const [isDark, setIsDark] = useState<any>(true);
-  const [isTransparent, setIsTransparent] = useState<any>(false);
-  const [bg, setBg] = useState<string>(``);
-  const [src, setSrc] = useState<string>("");
-  const boxRef = createRef<HTMLDivElement>();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [paddingOptions, setPaddingOptions] = useState<string>('')
+  const [lang, setLang] = useState<string>('')
+  const [themes, setThemes] = useState<string>('')
+  const [isDark, setIsDark] = useState<any>(true)
+  const [isTransparent, setIsTransparent] = useState<any>(false)
+  const [bg, setBg] = useState<string>(``)
+  const [src, setSrc] = useState<string>('')
+  const boxRef = createRef<HTMLDivElement>()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     switch (themes) {
-      case "beige":
-        setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`);
-        break;
-      case "purple":
-        setBg(`bg-gradient-to-tr from-themes-purpleFrom to-themes-purpleTo`);
-        break;
-      case "green":
-        setBg(`bg-gradient-to-br from-themes-greenFrom to-themes-greenTo`);
-        break;
-      case "blue":
-        setBg(`bg-gradient-to-br from-themes-blueFrom to-themes-blueTo`);
-        break;
+      case 'beige':
+        setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`)
+        break
+      case 'purple':
+        setBg(`bg-gradient-to-tr from-themes-purpleFrom to-themes-purpleTo`)
+        break
+      case 'green':
+        setBg(`bg-gradient-to-br from-themes-greenFrom to-themes-greenTo`)
+        break
+      case 'blue':
+        setBg(`bg-gradient-to-br from-themes-blueFrom to-themes-blueTo`)
+        break
       default:
-        setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`);
-        break;
+        setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`)
+        break
     }
-  }, [themes]);
+  }, [themes])
 
   const controls = [
-    { color: "bg-controls-red", id: 1 },
-    { color: "bg-controls-yellow", id: 2 },
-    { color: "bg-controls-green", id: 3 },
-  ];
+    { color: 'bg-controls-red', id: 1 },
+    { color: 'bg-controls-yellow', id: 2 },
+    { color: 'bg-controls-green', id: 3 },
+  ]
 
   const handlePadding = (e: MouseEvent<HTMLElement>) => {
-    const { name } = e.target as HTMLButtonElement;
-    setPaddingOptions(name);
-  };
+    const { name } = e.target as HTMLButtonElement
+    setPaddingOptions(name)
+  }
 
   const handleLang = (e: MouseEvent<HTMLElement>) => {
-    const { name } = e.target as HTMLButtonElement;
-    setLang(name);
-  };
+    const { name } = e.target as HTMLButtonElement
+    setLang(name)
+  }
 
   const handleTheme = (e: MouseEvent<HTMLElement>) => {
-    const { name } = e.target as HTMLButtonElement;
-    setThemes(name);
-  };
+    const { name } = e.target as HTMLButtonElement
+    setThemes(name)
+  }
 
   const handleExport = (node: HTMLElement | any) => {
-    console.log(node);
-    let scale = 2;
+    console.log(node)
+    let scale = 2
     domtoimage
       .toPng(node, {
         width: node.clientWidth * scale,
         height: node.clientHeight * scale,
         style: {
-          transform: "scale(" + scale + ")",
-          transformOrigin: "top left",
+          transform: 'scale(' + scale + ')',
+          transformOrigin: 'top left',
         },
       })
-      .then((dataUrl) => {
-        let img = new Image();
-        img.src = dataUrl;
-        setSrc(img.src);
+      .then(dataUrl => {
+        let img = new Image()
+        img.src = dataUrl
+        setSrc(img.src)
       })
       .catch(function (err) {
-        console.error("oops, something went wrong!", err);
-      });
-  };
+        console.error('oops, something went wrong!', err)
+      })
+  }
 
   return (
     <div className="container ">
       <div
         ref={isTransparent ? null : boxRef}
         className={` max-w-7xl  min-h-96 h-auto mb-14  w-screen  sm:w-auto ${
-          paddingOptions ? paddingOptions : "p-7"
-        } ${isTransparent ? "transparentBg" : bg}`}
+          paddingOptions ? paddingOptions : 'p-7'
+        } ${isTransparent ? 'transparentBg' : bg}`}
       >
         <div ref={isTransparent ? boxRef : null}>
           <div
             className={`${
-              isDark ? "bg-secondary-code" : "bg-secondary-light"
+              isDark ? 'bg-secondary-code' : 'bg-secondary-light'
             }  rounded-xl  overflow-hidden  `}
           >
             <div className="w-full h-8 mb-4 rounded-t-xl flex justify-between items-end  pl-4  pr-4 ">
               <div className="flex w-auto ">
-                {controls.map((item) => (
+                {controls.map(item => (
                   <span
                     key={item.id}
                     className={`w-4 h-4 rounded-full mr-3 block ${item.color}`}
@@ -147,7 +147,7 @@ const HomePage = (): JSX.Element => {
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="beige"
                   onClick={handleTheme}
@@ -160,7 +160,7 @@ const HomePage = (): JSX.Element => {
                   Beige
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="purple"
                   onClick={handleTheme}
@@ -173,7 +173,7 @@ const HomePage = (): JSX.Element => {
                   purple
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="green"
                   onClick={handleTheme}
@@ -186,7 +186,7 @@ const HomePage = (): JSX.Element => {
                   green
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="blue"
                   onClick={handleTheme}
@@ -245,7 +245,7 @@ const HomePage = (): JSX.Element => {
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="p-5"
                   onClick={handlePadding}
@@ -253,7 +253,7 @@ const HomePage = (): JSX.Element => {
                   5
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="p-7"
                   onClick={handlePadding}
@@ -261,7 +261,7 @@ const HomePage = (): JSX.Element => {
                   7
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="p-10"
                   onClick={handlePadding}
@@ -269,7 +269,7 @@ const HomePage = (): JSX.Element => {
                   10
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="p-16"
                   onClick={handlePadding}
@@ -277,7 +277,7 @@ const HomePage = (): JSX.Element => {
                   16
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="p-20"
                   onClick={handlePadding}
@@ -305,48 +305,48 @@ const HomePage = (): JSX.Element => {
               </MenuButton>
               <MenuList bg="#fde8be" border="1px solid #F6C76E">
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="jsx"
                   onClick={handleLang}
                   color="#3E2013"
                   icon={
-                    <DiReact style={{ fontSize: "25px" }} color="#3E2013" />
+                    <DiReact style={{ fontSize: '25px' }} color="#3E2013" />
                   }
                 >
                   JSX
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="html"
                   onClick={handleLang}
                   color="#3E2013"
                   icon={
-                    <DiHtml5 style={{ fontSize: "25px" }} color="#3E2013" />
+                    <DiHtml5 style={{ fontSize: '25px' }} color="#3E2013" />
                   }
                 >
                   HTML
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="css"
                   onClick={handleLang}
                   color="#3E2013"
-                  icon={<DiCss3 style={{ fontSize: "25px" }} color="#3E2013" />}
+                  icon={<DiCss3 style={{ fontSize: '25px' }} color="#3E2013" />}
                 >
                   CSS
                 </MenuItem>
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="javascript"
                   onClick={handleLang}
                   color="#3E2013"
                   icon={
                     <DiJavascript
-                      style={{ fontSize: "25px" }}
+                      style={{ fontSize: '25px' }}
                       color="#3E2013"
                     />
                   }
@@ -355,14 +355,14 @@ const HomePage = (): JSX.Element => {
                 </MenuItem>
 
                 <MenuItem
-                  _hover={{ bg: "#F6C76E" }}
+                  _hover={{ bg: '#F6C76E' }}
                   _focus={{}}
                   name="python"
                   onClick={handleLang}
                   color="#3E2013"
                   icon={
                     <IoLogoPython
-                      style={{ fontSize: "25px" }}
+                      style={{ fontSize: '25px' }}
                       color="#3E2013"
                     />
                   }
@@ -377,17 +377,17 @@ const HomePage = (): JSX.Element => {
         <button
           className="bg-primary-200 px-4 py-1 hover:bg-primary-100 border-2 border-primary-200 transition-all active:bg-primary-200 font-medium text-primary-400 rounded-lg flex items-center"
           onClick={() => {
-            handleExport(boxRef.current);
-            onOpen();
+            handleExport(boxRef.current)
+            onOpen()
           }}
         >
           Export
-          <BiExport style={{ marginLeft: "10px", color: "#3E2013" }} />
+          <BiExport style={{ marginLeft: '10px', color: '#3E2013' }} />
         </button>
       </div>
       <ModalComp isOpen={isOpen} src={src} onClose={onClose} />
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

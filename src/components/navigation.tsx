@@ -1,8 +1,8 @@
-import logo from "../svg/logo.svg";
-import { Link } from "react-router-dom";
+import logo from '../svg/logo.svg'
+import { Link } from 'react-router-dom'
 
-const Navigation = () : JSX.Element => {
-  return ( 
+const Navigation = (): JSX.Element => {
+  return (
     <div className="pt-4 px-4 flex w-full justify-between items-center">
       <Link to="/">
         <img className="w-20" src={logo} alt="" />
@@ -18,7 +18,7 @@ const Navigation = () : JSX.Element => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

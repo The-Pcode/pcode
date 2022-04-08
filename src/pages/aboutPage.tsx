@@ -1,20 +1,20 @@
-import logo from "../svg/logo.svg";
+import logo from '../svg/logo.svg'
 
 const AboutPage = () => {
   const contributors = [
     {
       id: 1,
-      name: "Ali Turkaman",
-      src: "https://avatars.githubusercontent.com/u/79016171?v=4",
-      github: "https://github.com/aliturkamanjs",
+      name: 'Ali Turkaman',
+      src: 'https://avatars.githubusercontent.com/u/79016171?v=4',
+      github: 'https://github.com/aliturkamanjs',
     },
     {
       id: 2,
-      name: "Matin Turkaman",
-      src: "https://avatars.githubusercontent.com/u/79017406?s=400&u=629c29c0c9542a958247aba7f593e24cee442a9b&v=4",
-      github: "https://github.com/matinturkaman",
+      name: 'Matin Turkaman',
+      src: 'https://avatars.githubusercontent.com/u/79017406?s=400&u=629c29c0c9542a958247aba7f593e24cee442a9b&v=4',
+      github: 'https://github.com/matinturkaman',
     },
-  ];
+  ]
 
   return (
     <div className="mt-10">
@@ -36,7 +36,7 @@ const AboutPage = () => {
           <a
             href="https://github.com/The-Pcode/pcode"
             className="text-lg underline"
-            style={{ color: "#FF8A00" }}
+            style={{ color: '#FF8A00' }}
             target="blank"
           >
             Source
@@ -44,7 +44,7 @@ const AboutPage = () => {
         </div>
 
         <div className="pt-5 flex">
-          {contributors.map((item) => (
+          {contributors.map(item => (
             <a
               href={item.github}
               key={item.id}
@@ -61,7 +61,7 @@ const AboutPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage

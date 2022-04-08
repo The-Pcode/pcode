@@ -1,35 +1,34 @@
-import CodeMirror from "@uiw/react-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
+import CodeMirror from '@uiw/react-codemirror'
+import { javascript } from '@codemirror/lang-javascript'
 
-import { html } from "@codemirror/lang-html";
-import { css } from "@codemirror/lang-css";
-import { python } from "@codemirror/lang-python";
-import { useEffect, useState } from "react";
-
+import { html } from '@codemirror/lang-html'
+import { css } from '@codemirror/lang-css'
+import { python } from '@codemirror/lang-python'
+import { useEffect, useState } from 'react'
 
 const Editor = ({ isDark, lang }: { isDark: boolean; lang: string }) => {
-  const [value, setValue] = useState<string>(``);
+  const [value, setValue] = useState<string>(``)
 
   useEffect(() => {
     switch (lang) {
-      case "javascript":
-        setValue(_js);
-        break;
-      case "css":
-        setValue(_css);
-        break;
-      case "html":
-        setValue(_html);
-        break;
-      case "python":
-        setValue(_python);
-        break;
+      case 'javascript':
+        setValue(_js)
+        break
+      case 'css':
+        setValue(_css)
+        break
+      case 'html':
+        setValue(_html)
+        break
+      case 'python':
+        setValue(_python)
+        break
 
       default:
-        setValue(_jsx);
-        break;
+        setValue(_jsx)
+        break
     }
-  }, [lang]);
+  }, [lang])
 
   return (
     <div className="h-auto px-2 pb-2">
@@ -38,27 +37,26 @@ const Editor = ({ isDark, lang }: { isDark: boolean; lang: string }) => {
         height="auto"
         className="codemirror"
         extensions={[
-          lang === "javascript"
+          lang === 'javascript'
             ? javascript()
-            : lang === "css"
+            : lang === 'css'
             ? css()
-            : lang === "html"
+            : lang === 'html'
             ? html()
-            : lang === "python"
+            : lang === 'python'
             ? python()
             : javascript({ jsx: true }),
         ]}
-        theme={isDark ? "dark" : "light"}
+        theme={isDark ? 'dark' : 'light'}
         onChange={(value, viewUpdate) => {
           // console.log("value:", value);
         }}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Editor;
-
+export default Editor
 
 export const _js = `const button = doucument.getElementById("btn")
 

@@ -1,4 +1,4 @@
-const Footer = () : JSX.Element => {
+const Footer = (): JSX.Element => {
   return (
     <div className=" w-full h-16 pb-4 text-sm">
       <h1 className="text-center text-base  text-primary-400">
@@ -10,7 +10,7 @@ const Footer = () : JSX.Element => {
         </a>
       </h1>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

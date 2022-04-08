@@ -7,18 +7,17 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react'
 
 const ModalComp = ({
   onClose,
   isOpen,
   src,
 }: {
-  onClose: () => void;
-  isOpen: boolean;
-  src: string;
+  onClose: () => void
+  isOpen: boolean
+  src: string
 }) => {
-
   return (
     <Modal
       isCentered
@@ -42,7 +41,7 @@ const ModalComp = ({
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
 
-export default ModalComp;
+export default ModalComp
