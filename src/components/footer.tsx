@@ -1,7 +1,7 @@
 const Footer = (): JSX.Element => {
   return (
-    <div className=" w-full h-16 pb-4 text-sm">
-      <h1 className="text-center text-base  text-primary-400">
+    <div className=" w-full h-16 pb-2 ">
+      <h1 className="text-center text-[14px] text-primary-400">
         <a
           className="absolute bottom-3 md:bottom-6 right-0 left-0"
           href="https://github.com/MoltyCode"

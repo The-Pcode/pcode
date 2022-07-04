@@ -10,7 +10,7 @@ const Editor = ({ isDark, lang }: { isDark: boolean; lang: string }) => {
   const [value, setValue] = useState<string>(``)
 
   useEffect(() => {
-    switch (lang) {
+    switch (lang.toLowerCase()) {
       case 'javascript':
         setValue(_js)
         break
@@ -47,7 +47,7 @@ const Editor = ({ isDark, lang }: { isDark: boolean; lang: string }) => {
             ? python()
             : javascript({ jsx: true }),
         ]}
-        theme={isDark ? 'dark' : 'light'}
+        theme={!isDark ? 'dark' : 'light'}
         onChange={(value, viewUpdate) => {
           // console.log("value:", value);
         }}

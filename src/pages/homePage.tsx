@@ -1,35 +1,31 @@
-import {
-  Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  useDisclosure,
-} from '@chakra-ui/react'
 import domtoimage from 'dom-to-image'
 import Editor from '../components/Editor'
-import ModalComp from '../components/modal'
-import { Switch } from '@chakra-ui/switch'
-import { createRef, MouseEvent, useEffect, useState } from 'react'
+import { ChangeEvent, createRef, useEffect, useState } from 'react'
 import { BiExport } from 'react-icons/bi'
-import { DiCss3, DiHtml5, DiJavascript, DiReact } from 'react-icons/di'
-import { BiChevronDown } from 'react-icons/bi'
-import { IoLogoPython } from 'react-icons/io'
+import Modal from '../components/modal'
+import ListBox from '../utils/listBox'
+import {
+  bgItems,
+  langItems,
+  paddingItems,
+} from '../components/menuItems/MenuItems'
+import { SwitchToggle } from '../utils/Switch'
 
 const HomePage = (): JSX.Element => {
   const [paddingOptions, setPaddingOptions] = useState<string>('')
   const [lang, setLang] = useState<string>('')
   const [themes, setThemes] = useState<string>('')
-  const [isDark, setIsDark] = useState<any>(true)
-  const [isTransparent, setIsTransparent] = useState<any>(false)
+  const [isDark, setIsDark] = useState<boolean>(false)
+  const [isTransparent, setIsTransparent] = useState<boolean>(false)
   const [bg, setBg] = useState<string>(``)
   const [src, setSrc] = useState<string>('')
+  const [isOpen, setIsopen] = useState<boolean>(false)
+  const [codeTitle, setCodeTitle] = useState<string>('')
+
   const boxRef = createRef<HTMLDivElement>()
-  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
-    switch (themes) {
+    switch (themes.toLowerCase()) {
       case 'beige':
         setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`)
         break
@@ -41,6 +37,9 @@ const HomePage = (): JSX.Element => {
         break
       case 'blue':
         setBg(`bg-gradient-to-br from-themes-blueFrom to-themes-blueTo`)
+        break
+      case 'white':
+        setBg(`bg-gradient-to-br from-slate-200 to-slate-600`)
         break
       default:
         setBg(`bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo`)
@@ -54,23 +53,19 @@ const HomePage = (): JSX.Element => {
     { color: 'bg-controls-green', id: 3 },
   ]
 
-  const handlePadding = (e: MouseEvent<HTMLElement>) => {
-    const { name } = e.target as HTMLButtonElement
-    setPaddingOptions(name)
+  const handlePadding = (item: string) => {
+    setPaddingOptions(item)
   }
 
-  const handleLang = (e: MouseEvent<HTMLElement>) => {
-    const { name } = e.target as HTMLButtonElement
-    setLang(name)
+  const handleLang = (item: string) => {
+    setLang(item)
   }
 
-  const handleTheme = (e: MouseEvent<HTMLElement>) => {
-    const { name } = e.target as HTMLButtonElement
-    setThemes(name)
+  const handleTheme = (item: string) => {
+    setThemes(item)
   }
 
   const handleExport = (node: HTMLElement | any) => {
-    console.log(node)
     let scale = 2
     domtoimage
       .toPng(node, {
@@ -94,30 +89,34 @@ const HomePage = (): JSX.Element => {
   return (
     <div className="container ">
       <div
-        ref={isTransparent ? null : boxRef}
-        className={` max-w-7xl  min-h-96 h-auto mb-14  w-screen  sm:w-auto ${
+        ref={!isTransparent ? boxRef : null}
+        className={` max-w-7xl min-h-96 h-auto mb-14 w-screen sm:w-auto ${
           paddingOptions ? paddingOptions : 'p-7'
         } ${isTransparent ? 'transparentBg' : bg}`}
       >
         <div ref={isTransparent ? boxRef : null}>
           <div
             className={`${
-              isDark ? 'bg-secondary-code' : 'bg-secondary-light'
-            }  rounded-xl  overflow-hidden  `}
+              !isDark ? 'bg-secondary-code' : 'bg-secondary-light'
+            }  rounded-xl overflow-hidden shadow-2xl`}
           >
-            <div className="w-full h-8 mb-4 rounded-t-xl flex justify-between items-end  pl-4  pr-4 ">
-              <div className="flex w-auto ">
+            <div className="w-full h-[26px] mb-4 rounded-t-xl flex justify-between items-end px-4 ">
+              <div className="flex w-auto">
                 {controls.map(item => (
                   <span
                     key={item.id}
-                    className={`w-4 h-4 rounded-full mr-3 block ${item.color}`}
+                    className={`w-[13px] h-[13px] rounded-full mr-2 block ${item.color}`}
                   ></span>
                 ))}
               </div>
               <input
                 type="text"
-                placeholder="untitled-1"
-                className="input-title"
+                value={codeTitle}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setCodeTitle(e.target.value)
+                }}
+                placeholder="untitled"
+                className="bg-transparent border-none text-center outline-none h-4 text-[14px] w-full font-light placeholder:text-slate-400 text-slate-400"
               />
               <div className="w-20"></div>
             </div>
@@ -130,262 +129,53 @@ const HomePage = (): JSX.Element => {
       <div className="mx-auto min-w-9/12 w-screen sm:w-auto flex-wrap h-auto py-3 border-2 border-primary-200  rounded-md flex justify-between items-center pl-3 pr-3 ">
         <div className="flex items-center flex-wrap  ">
           <div className="flex items-center mr-3 cursor-pointer">
-            <Menu>
-              <MenuButton
-                as={Button}
-                bg="none"
-                _focus={{}}
-                _hover={{}}
-                _active={{}}
-              >
-                <Flex flexDir="row-reverse">
-                  <div className={`w-5 h-5 ${bg} rounded-full`}></div>
-                  <h1 className="text-primary-400 mr-3 font-medium">
-                    background
-                  </h1>
-                </Flex>
-              </MenuButton>
-              <MenuList bg="#fde8be" border="1px solid #F6C76E">
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="beige"
-                  onClick={handleTheme}
-                  icon={
-                    <div
-                      className={`w-5 h-5 bg-gradient-to-br from-themes-beigeFrom to-themes-beigeTo rounded-full`}
-                    ></div>
-                  }
-                >
-                  Beige
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="purple"
-                  onClick={handleTheme}
-                  icon={
-                    <div
-                      className={`w-5 h-5 bg-gradient-to-br from-themes-purpleFrom to-themes-purpleTo rounded-full`}
-                    ></div>
-                  }
-                >
-                  purple
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="green"
-                  onClick={handleTheme}
-                  icon={
-                    <div
-                      className={`w-5 h-5 bg-gradient-to-br from-themes-greenFrom to-themes-greenTo rounded-full`}
-                    ></div>
-                  }
-                >
-                  green
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="blue"
-                  onClick={handleTheme}
-                  icon={
-                    <div
-                      className={`w-5 h-5 bg-gradient-to-br from-themes-blueFrom to-themes-blueTo rounded-full`}
-                    ></div>
-                  }
-                >
-                  blue
-                </MenuItem>
-              </MenuList>
-            </Menu>
+            <ListBox items={bgItems} handleClick={handleTheme} type="bg" />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <label
               htmlFor="lightmode"
-              className="text-primary-400 mr-3 font-medium cursor-pointer select-none"
+              className="text-primary-400 mr-3 font-normal cursor-pointer select-none"
             >
               light mode
             </label>
-            <Switch
-              colorScheme="orange"
-              onChange={() => setIsDark((prev: any) => !prev)}
-              id="lightmode"
-              value={isDark}
-            />
+            <SwitchToggle isEnabled={isDark} setIsEnabled={setIsDark} />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
             <label
               htmlFor="transparent"
-              className="text-primary-400 mr-3 font-medium cursor-pointer select-none"
+              className="text-primary-400 mr-3 font-normal cursor-pointer select-none"
             >
               transparent
             </label>
-            <Switch
-              colorScheme="orange"
-              value={isTransparent}
-              id="transparent"
-              onChange={() => setIsTransparent((prev: any) => !prev)}
+            <SwitchToggle
+              isEnabled={isTransparent}
+              setIsEnabled={setIsTransparent}
             />
           </div>
           <div className="flex items-center  cursor-pointer ">
-            <Menu>
-              <MenuButton
-                as={Button}
-                _focus={{}}
-                bg="none"
-                _hover={{}}
-                _active={{}}
-              >
-                <Flex alignItems="center">
-                  <h1 className="text-primary-400 font-medium">padding</h1>
-                  <BiChevronDown className="text-primary-400 ml-1 mt-1 text-xl" />
-                </Flex>
-              </MenuButton>
-              <MenuList bg="#fde8be" border="1px solid #F6C76E">
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="p-5"
-                  onClick={handlePadding}
-                >
-                  5
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="p-7"
-                  onClick={handlePadding}
-                >
-                  7
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="p-10"
-                  onClick={handlePadding}
-                >
-                  10
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="p-16"
-                  onClick={handlePadding}
-                >
-                  16
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="p-20"
-                  onClick={handlePadding}
-                >
-                  20
-                </MenuItem>
-              </MenuList>
-            </Menu>
+            <ListBox
+              items={paddingItems}
+              handleClick={handlePadding}
+              type="padding"
+            />
           </div>
           <div className="flex items-center mr-6 cursor-pointer">
-            <Menu>
-              <MenuButton
-                as={Button}
-                _focus={{}}
-                bg="none"
-                _hover={{}}
-                _active={{}}
-              >
-                <Flex alignItems="center">
-                  <h1 className="text-primary-400 mr-1 font-medium">
-                    language
-                  </h1>
-                  <BiChevronDown className="text-primary-400  mt-1 text-xl" />
-                </Flex>
-              </MenuButton>
-              <MenuList bg="#fde8be" border="1px solid #F6C76E">
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="jsx"
-                  onClick={handleLang}
-                  color="#3E2013"
-                  icon={
-                    <DiReact style={{ fontSize: '25px' }} color="#3E2013" />
-                  }
-                >
-                  JSX
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="html"
-                  onClick={handleLang}
-                  color="#3E2013"
-                  icon={
-                    <DiHtml5 style={{ fontSize: '25px' }} color="#3E2013" />
-                  }
-                >
-                  HTML
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="css"
-                  onClick={handleLang}
-                  color="#3E2013"
-                  icon={<DiCss3 style={{ fontSize: '25px' }} color="#3E2013" />}
-                >
-                  CSS
-                </MenuItem>
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="javascript"
-                  onClick={handleLang}
-                  color="#3E2013"
-                  icon={
-                    <DiJavascript
-                      style={{ fontSize: '25px' }}
-                      color="#3E2013"
-                    />
-                  }
-                >
-                  JAVASCRIPT
-                </MenuItem>
-
-                <MenuItem
-                  _hover={{ bg: '#F6C76E' }}
-                  _focus={{}}
-                  name="python"
-                  onClick={handleLang}
-                  color="#3E2013"
-                  icon={
-                    <IoLogoPython
-                      style={{ fontSize: '25px' }}
-                      color="#3E2013"
-                    />
-                  }
-                >
-                  PYTHON
-                </MenuItem>
-              </MenuList>
-            </Menu>
+            <ListBox items={langItems} handleClick={handleLang} type="lnag" />
           </div>
         </div>
 
         <button
           className="bg-primary-200 px-4 py-1 hover:bg-primary-100 border-2 border-primary-200 transition-all active:bg-primary-200 font-medium text-primary-400 rounded-lg flex items-center"
           onClick={() => {
+            setIsopen(true)
             handleExport(boxRef.current)
-            onOpen()
           }}
         >
           Export
           <BiExport style={{ marginLeft: '10px', color: '#3E2013' }} />
         </button>
       </div>
-      <ModalComp isOpen={isOpen} src={src} onClose={onClose} />
+      <Modal isOpen={isOpen} setIsopen={setIsopen} src={src} title={codeTitle} />
     </div>
   )
 }
