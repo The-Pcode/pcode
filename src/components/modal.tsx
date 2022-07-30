@@ -63,7 +63,7 @@ export default function Modal({
                   <div className="mt-6 w-full">
                     <a
                       href={src}
-                      download={title ? title : 'the-pcode'}
+                      download={title ? title + '.png' : 'the-pcode'}
                       className="bg-primary-200 w-full block font-medium text-primary-400 py-2 text-center rounded-lg"
                     >
                       download

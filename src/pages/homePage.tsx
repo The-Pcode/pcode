@@ -175,7 +175,12 @@ const HomePage = (): JSX.Element => {
           <BiExport style={{ marginLeft: '10px', color: '#3E2013' }} />
         </button>
       </div>
-      <Modal isOpen={isOpen} setIsopen={setIsopen} src={src} title={codeTitle} />
+      <Modal
+        isOpen={isOpen}
+        setIsopen={setIsopen}
+        src={src}
+        title={codeTitle}
+      />
     </div>
   )
 }
